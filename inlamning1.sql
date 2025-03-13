@@ -11,11 +11,11 @@ USE Your_Bookstore;
 
 -- Skapa tabellen Kunder
 CREATE TABLE Kunder (
-    KundID INT AUTO_INCREMENT PRIMARY KEY,
-    Namn VARCHAR(100) NOT NULL,
-    Epost VARCHAR(255) UNIQUE NOT NULL,
-    Telefon VARCHAR(100) NOT NULL,
-    Adress VARCHAR(255) NOT NULL
+    KundID INT AUTO_INCREMENT PRIMARY KEY, -- Primär nyckel, skapar unikt id för varje kund
+    Namn VARCHAR(100) NOT NULL, -- textsträng med max 100 tecken
+    Epost VARCHAR(255) UNIQUE NOT NULL, -- måste vara unikt
+    Telefon VARCHAR(100) NOT NULL, -- textsträng med max 100 tecken
+    Adress VARCHAR(255) NOT NULL -- textsträng med max 250 tecken
 );
 
 -- Skapa tabellen Böcker
@@ -23,29 +23,29 @@ CREATE TABLE Böcker (
     ISBN VARCHAR(100) NOT NULL PRIMARY KEY,    
     Författare VARCHAR(100),
     Titel VARCHAR(255) NOT NULL,
-    Pris DECIMAL(10,2) NOT NULL CHECK (Pris > 0),
+    Pris DECIMAL(10,2) NOT NULL CHECK (Pris > 0), -- tal med max 10 siffror inkl decimal. pris måste vara större än 0
     Lagerstatus INT NOT NULL
 );
 
 -- Skapa tabellen Beställningar
 CREATE TABLE Beställningar (
     Ordernummer INT AUTO_INCREMENT PRIMARY KEY,
-    KundID INT NOT NULL,
-    Datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    KundID INT NOT NULL, -- samband med FK längst ner i denna tabell
+    Datum TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- den aktuella tiden anges i samband med ordern
     Totalbelopp DECIMAL(10,2) NOT NULL CHECK (Totalbelopp > 0),
-    FOREIGN KEY (KundID) REFERENCES Kunder(KundID)
+    FOREIGN KEY (KundID) REFERENCES Kunder(KundID) -- främmande nyckel ifrån tabellen kunder
 );
 
 -- Skapa tabellen Orderrader
 
 CREATE TABLE Orderrader (
     OrderradID INT AUTO_INCREMENT PRIMARY KEY,
-    Ordernummer INT NOT NULL,
-    ISBN VARCHAR(100) NOT NULL,
+    Ordernummer INT NOT NULL, -- samband med FK längre ner i denna tabell
+    ISBN VARCHAR(100) NOT NULL, -- samband med FK längre ner i denna tabell
     Antal INT NOT NULL CHECK (Antal > 0),
     Delbelopp DECIMAL(10,2) NOT NULL CHECK (Delbelopp > 0),
-    FOREIGN KEY (Ordernummer) REFERENCES Beställningar(Ordernummer),
-    FOREIGN KEY (ISBN) REFERENCES Böcker(ISBN)
+    FOREIGN KEY (Ordernummer) REFERENCES Beställningar(Ordernummer), -- främmande nyckel kopplad till tabellen beställningar
+    FOREIGN KEY (ISBN) REFERENCES Böcker(ISBN) -- främmande nyckel kopplad till tabellen böcker
 );
 
 
@@ -62,5 +62,5 @@ INSERT INTO Böcker (ISBN, Författare, Titel, Pris, Lagerstatus) VALUES
 ('978-91-1-304767-6', 'Michael Connelly', 'Prövningen', '99', '600'),
 ('978-91-7679-543-9', 'Lars Wilderäng', 'Höstsol','224', '1000');
 
--- Hämtar data och filtrerar böcker som har ett pris överstigande 100 kr
-SELECT * FROM Böcker WHERE Pris > 100;
+-- Hämtar data över böcker som har ett pris överstigande 100 kr i tabellen böcker
+SELECT * FROM Böcker WHERE Pris > 100; 
