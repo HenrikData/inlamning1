@@ -3,7 +3,7 @@ Den här databasen är skapad av Henrik Karlsson YH2024.
 */
 
 /*
-Jag skapar databasen och döper den till "Your_Bookstore".
+Skapar databasen och döper den till "Your_Bookstore".
 */
 
 CREATE DATABASE Your_Bookstore;
