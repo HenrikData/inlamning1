@@ -1,5 +1,4 @@
-# Inlamning1
-
+# Inlamning1 - Henrik Karlsson YH 2024
 Den här databasen hanterar kunder och beställningar för en bokhandel och är döpt till Your_Bookstore.
 Databasen bygger på relationerna att: En kund kan göra flera beställningar och att: En beställning innehåller en eller
 flera böcker.
