@@ -6,5 +6,5 @@ För att åstadkomma detta har 4 tabeller skapats där tabellerna är: Kunder, B
 PK i respektive tabell är KundID, Ordernummer, OrderradID och ISBN. <BR><BR>
 Det finns relation mellan kunder och beställningar, mellan beställningar och orderrader, mellan böcker och orderrader. Orderrader är länken mellan böcker och beställningar. Relationerna knyts samman av FK som är kundID, ordernummer och ISBN. <BR><BR>
 Tabellerna är testade och fungerar. <BR><BR>
-Endast Kunder och Böcker har fått ett innehåll. <BR><BR>
+Endast Kunder och Böcker har i dagsläget fått ett innehåll. Dvs inga ordrar är skapade hittills. <BR><BR>
 Slutligen har en enkel selectfråga skapats för att testa att det fungerar att hämta och filtrera data.
